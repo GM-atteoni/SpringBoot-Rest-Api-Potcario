@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,8 +19,24 @@ public class PotsController {
 	
 	@Autowired
 	private ProductRepository productRepository;
+	
+		//End Points Usuário
+	
+	//Sign In
+	@RequestMapping(value = "user", method = RequestMethod.POST)
+	public String cadastro(@RequestBody String user /* <<< JSON*/) {
+		
+		//utilizar o new Gson().fromJSON() para transformar o json em classe
+		
+		
+		
+		return "";
+	}
+	//Login
+	
+		//End Points Produtos
 
-	//Única funcional
+	//Mostrar todos
 	@RequestMapping(value = "pots", method = RequestMethod.GET)
 	public String pots() {
 		List<Product> listProdutos = productRepository.findAll();
@@ -27,17 +44,22 @@ public class PotsController {
 		
 		return JSON;
 	}
-	
-	//Não implementadas ainda
+	//Mostrar uma
 	@RequestMapping(value = "pots/{id}", method = RequestMethod.GET)
 	public String potDetail(@PathVariable int id) {
-		return "poção: " + id;
+		Product produto = productRepository.findById(id).orElse(new Product());
+
+		String JSON = new Gson().toJson(produto);
+		
+		return JSON;
 	}
-	//Não implementadas ainda
+	
+	// End Points Carrinho
 	@RequestMapping(value = "cart/{user}", method = RequestMethod.GET)
 	public String cart(@PathVariable int user) {
 		return "poções no carrinho do usuário: " + user;
 	}
+	
 	//Não implementadas ainda
 	@RequestMapping(value = "cart/{user}/{id}", method = RequestMethod.POST)
 	public String cartAdd(@PathVariable("user") int user, @PathVariable("id") int id) {
