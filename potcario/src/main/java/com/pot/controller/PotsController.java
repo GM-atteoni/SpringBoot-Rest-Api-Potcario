@@ -10,8 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+import com.pot.exception.AuthException;
 import com.pot.model.Product;
+import com.pot.model.Usuario;
 import com.pot.repository.ProductRepository;
+import com.pot.repository.UsuarioRepository;
 
 @RestController
 @RequestMapping("api/v1/")
@@ -20,20 +26,63 @@ public class PotsController {
 	@Autowired
 	private ProductRepository productRepository;
 	
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+	
 		//End Points Usuário
 	
 	//Sign In
 	@RequestMapping(value = "user", method = RequestMethod.POST)
 	public String cadastro(@RequestBody String user /* <<< JSON*/) {
-		
-		//utilizar o new Gson().fromJSON() para transformar o json em classe
-		
-		
-		
-		return "";
+
+			try {
+				//Valida se o JSON está correto
+				Usuario usuario = new Gson().fromJson(user, Usuario.class);
+				
+				//Valida se já não existe
+				Usuario usuaVerif = usuarioRepository.findByEmail(usuario.getEmail());
+				if(usuaVerif == null) {
+					
+					return new Gson().toJson(usuarioRepository.save(usuario).getCustomeruserid());
+					
+				} else {
+					throw new AuthException("Usuário já cadastrado");
+				}
+				
+			} catch (JsonSyntaxException | AuthException e) {
+				return new Gson().toJson(e);
+			}
+			
 	}
 	//Login
-	
+	@RequestMapping(value = "user/login", method = RequestMethod.POST)
+	public String login(@RequestBody String login /* <<< JSON*/) {
+		
+		
+		try {
+			JsonParser parser = new JsonParser();
+			JsonObject obj = parser.parse(login).getAsJsonObject();
+			String email = obj.get("email").getAsString();
+			
+			//Valida se existe
+			Usuario usuaVerif = usuarioRepository.findByEmail(email);
+			if(usuaVerif == null) {
+				throw new AuthException("E-mail não cadastrado");
+			} else {
+				//Segurança que chama
+				String senha = obj.get("senha").getAsString();
+				if(usuaVerif.getPwd().equals(senha)) {
+					return "Logado!";
+				}else {
+					throw new AuthException("Senha incorreta");
+				}
+			}
+		} catch (AuthException e) {
+			return new Gson().toJson(e);
+		}
+		
+		}
+
 		//End Points Produtos
 
 	//Mostrar todos
@@ -80,5 +129,5 @@ public class PotsController {
 	public String notFound() {
 		return "Página não existe";
 	}
-
+	
 }
