@@ -10,5 +10,5 @@ public class AuthException extends RuntimeException {
 	public AuthException(String exception) {
 		super(exception);
 	}
-	
+
 }

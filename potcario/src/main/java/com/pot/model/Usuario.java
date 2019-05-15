@@ -15,39 +15,39 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name="customeruser")
+@Table(name = "customeruser")
 @EntityListeners(AuditingEntityListener.class)
 public class Usuario {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer customeruserid;
-	
+
 	@NotNull
 	private String name;
-	
+
 	@NotNull
 	private String email;
-	
+
 	@NotNull
 	private String pwd;
-	
+
 	@NotNull
 	private String adressstreet;
-	
+
 	@NotNull
 	private Integer adressnumber;
-	
+
 	@NotNull
 	private String city;
-	
+
 	@NotNull
 	private String country;
-	
+
 	@NotNull
 	@CreatedDate
 	private Date creationdate;
-	
+
 	@NotNull
 	@LastModifiedDate
 	private Date updatedate;
@@ -131,7 +131,5 @@ public class Usuario {
 	public void setUpdatedate(Date updatedate) {
 		this.updatedate = updatedate;
 	}
-	
-	
-	
+
 }

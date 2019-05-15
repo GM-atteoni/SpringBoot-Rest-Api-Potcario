@@ -15,27 +15,27 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name="product")
+@Table(name = "product")
 @EntityListeners(AuditingEntityListener.class)
 public class Product {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer productid;
-	
+
 	@NotNull
 	private Integer adminuserid;
-	
+
 	@NotNull
 	private String name;
-	
+
 	@NotNull
 	private String description;
-	
+
 	@NotNull
 	@CreatedDate
 	private Date creationdate;
-	
+
 	@NotNull
 	@LastModifiedDate
 	private Date updatedate;
@@ -88,6 +88,4 @@ public class Product {
 		this.updatedate = updatedate;
 	}
 
-	
-	
 }
