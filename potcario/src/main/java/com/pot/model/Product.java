@@ -13,18 +13,18 @@ import javax.validation.constraints.NotNull;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "product")
 @EntityListeners(AuditingEntityListener.class)
 public class Product {
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer productid;
+	private int productId;
 
 	@NotNull
-	private Integer adminuserid;
+	private int adminUserId;
 
 	@NotNull
 	private String name;
@@ -34,26 +34,28 @@ public class Product {
 
 	@NotNull
 	@CreatedDate
-	private Date creationdate;
+	@DateTimeFormat
+	private String creationDate;
 
 	@NotNull
 	@LastModifiedDate
-	private Date updatedate;
+	@DateTimeFormat
+	private String updateDate;
 
-	public Integer getProductid() {
-		return productid;
+	public int getProductId() {
+		return productId;
 	}
 
-	public void setProductid(Integer productid) {
-		this.productid = productid;
+	public void setProductId(int productId) {
+		this.productId = productId;
 	}
 
-	public Integer getAdminuserid() {
-		return adminuserid;
+	public int getAdminUserId() {
+		return adminUserId;
 	}
 
-	public void setAdminuserid(Integer adminuserid) {
-		this.adminuserid = adminuserid;
+	public void setAdminUserId(int adminUserId) {
+		this.adminUserId = adminUserId;
 	}
 
 	public String getName() {
@@ -72,20 +74,19 @@ public class Product {
 		this.description = description;
 	}
 
-	public Date getCreationdate() {
-		return creationdate;
+	public String getCreationDate() {
+		return creationDate;
 	}
 
-	public void setCreationdate(Date creationdate) {
-		this.creationdate = creationdate;
+	public void setCreationDate(String creationDate) {
+		this.creationDate = creationDate;
 	}
 
-	public Date getUpdatedate() {
-		return updatedate;
+	public String getUpdateDate() {
+		return updateDate;
 	}
 
-	public void setUpdatedate(Date updatedate) {
-		this.updatedate = updatedate;
+	public void setUpdateDate(String updateDate) {
+		this.updateDate = updateDate;
 	}
-
 }
