@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.pot.model.User;
 
+@Deprecated
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 

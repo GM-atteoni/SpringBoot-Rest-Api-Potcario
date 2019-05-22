@@ -14,45 +14,45 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.pot.model.Cart;
-import com.pot.repository.CartRepository;
+import com.pot.model.Category;
+import com.pot.repository.CategoryRepository;
 
 @RestController
 @RequestMapping("api/v1/")
-public class CartController {
+public class CategoryController {
 	@Autowired
-	private CartRepository cartRepository;
+	private CategoryRepository categoryRepository;
 
-	@GetMapping(value = "cart")
-	public List<Cart> findAll() {
-		return cartRepository.findAll();
+	@GetMapping(value = "category")
+	public List<Category> findAll() {
+		return categoryRepository.findAll();
 	}
 
-	@GetMapping(value = "cart/{id}")
-	public ResponseEntity<Cart> findById(@PathVariable int id) {
-		return cartRepository.findById(id).map(record -> ResponseEntity.ok().body(record))
+	@GetMapping(value = "category/{id}")
+	public ResponseEntity<Category> findById(@PathVariable int id) {
+		return categoryRepository.findById(id).map(record -> ResponseEntity.ok().body(record))
 				.orElse(ResponseEntity.notFound().build());
 	}
 
-	@PostMapping(value = "cart")
-	public Cart create(@RequestBody Cart cart) {
-		return cartRepository.save(cart);
+	@PostMapping(value = "category")
+	public Category create(@RequestBody Category category) {
+		return categoryRepository.save(category);
 	}
 
-	@PutMapping(value = "cart/{id}")
-	public ResponseEntity<Cart> update(@PathVariable int id, @RequestBody Cart cart) {
-		return cartRepository.findById(id).map(record -> {
-//			record.setName(cart.getName());
-//			record.setDescription(cart.getDescription());
-			Cart updated = cartRepository.save(record);
+	@PutMapping(value = "category/{id}")
+	public ResponseEntity<Category> update(@PathVariable int id, @RequestBody Category category) {
+		return categoryRepository.findById(id).map(record -> {
+//			record.setName(category.getName());
+//			record.setDescription(category.getDescription());
+			Category updated = categoryRepository.save(record);
 			return ResponseEntity.ok().body(updated);
 		}).orElse(ResponseEntity.notFound().build());
 	}
 
-	@DeleteMapping(value = "cart/{id}")
+	@DeleteMapping(value = "category/{id}")
 	public ResponseEntity<?> delete(@PathVariable int id) {
-		return cartRepository.findById(id).map(record -> {
-			cartRepository.deleteById(id);
+		return categoryRepository.findById(id).map(record -> {
+			categoryRepository.deleteById(id);
 			return ResponseEntity.ok().build();
 		}).orElse(ResponseEntity.notFound().build());
 	}

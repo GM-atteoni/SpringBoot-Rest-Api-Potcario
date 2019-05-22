@@ -16,21 +16,12 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name = "product")
+@Table(name = "admin_user")
 @EntityListeners(AuditingEntityListener.class)
-public class Product {
+public class AdminUser {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int productId;
-
-	@NotNull
 	private int adminUserId;
-
-	@NotNull
-	private String name;
-
-	@NotNull
-	private String description;
 
 	@NotNull
 	@CreatedDate
@@ -42,36 +33,12 @@ public class Product {
 	@DateTimeFormat
 	private LocalDateTime updateDate;
 
-	public int getProductId() {
-		return productId;
-	}
-
-	public void setProductId(int productId) {
-		this.productId = productId;
-	}
-
-	public int getAdminUserId() {
+	public int getCartId() {
 		return adminUserId;
 	}
 
-	public void setAdminUserId(int adminUserId) {
-		this.adminUserId = adminUserId;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
+	public void setCarttId(int productId) {
+		this.adminUserId = productId;
 	}
 
 	public LocalDateTime getCreationDate() {
