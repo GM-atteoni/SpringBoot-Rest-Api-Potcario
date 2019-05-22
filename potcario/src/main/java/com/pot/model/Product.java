@@ -1,6 +1,7 @@
 package com.pot.model;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
@@ -35,12 +36,12 @@ public class Product {
 	@NotNull
 	@CreatedDate
 	@DateTimeFormat
-	private String creationDate;
+	private LocalDateTime creationDate;
 
 	@NotNull
 	@LastModifiedDate
 	@DateTimeFormat
-	private String updateDate;
+	private LocalDateTime updateDate;
 
 	public int getProductId() {
 		return productId;
@@ -74,19 +75,19 @@ public class Product {
 		this.description = description;
 	}
 
-	public String getCreationDate() {
+	public LocalDateTime getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(String creationDate) {
+	public void setCreationDate(LocalDateTime creationDate) {
 		this.creationDate = creationDate;
 	}
 
-	public String getUpdateDate() {
+	public LocalDateTime getUpdateDate() {
 		return updateDate;
 	}
 
-	public void setUpdateDate(String updateDate) {
+	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
 	}
 }
