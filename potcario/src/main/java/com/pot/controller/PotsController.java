@@ -1,23 +1,7 @@
 package com.pot.controller;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
-import com.google.gson.JsonSyntaxException;
-import com.pot.exception.AuthException;
-import com.pot.model.Product;
-//import com.pot.model.Usuario;
-//import com.pot.repository.ProductRepository;
-//import com.pot.repository.UsuarioRepository;
 
 @Deprecated
 @RestController

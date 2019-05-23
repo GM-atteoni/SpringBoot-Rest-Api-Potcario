@@ -1,5 +1,6 @@
 package com.pot.model;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
@@ -22,6 +23,8 @@ public class Cart {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int cartId;
+
+	private BigDecimal total;
 
 	@NotNull
 	@CreatedDate
@@ -55,5 +58,13 @@ public class Cart {
 
 	public void setUpdateDate(LocalDateTime updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public BigDecimal getTotal() {
+		return total;
+	}
+
+	public void setTotal(BigDecimal total) {
+		this.total = total;
 	}
 }
